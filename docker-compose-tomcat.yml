@@ -1,0 +1,16 @@
+nginx-tomcat:
+    build: ./nginx.tomcat
+    links:
+        - tomcat-1:tomcat-1
+        - tomcat-2:tomcat-2
+    ports:
+        - "80:80"
+tomcat-1:
+    image: tomcat
+    ports:
+        - "8080"
+
+tomcat-2:
+    image: tomcat
+    ports:
+        - "8080"

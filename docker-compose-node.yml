@@ -1,5 +1,5 @@
 nginx:
-    build: ./nginx
+    build: ./nginx.node
     links:
         - node1:node1
         - node2:node2

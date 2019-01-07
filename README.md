@@ -1,11 +1,10 @@
-# Docker
-Docker Lab
+# Docker Lab
+Various project with Docker & Docker Compose
 
-## Lab1: 
-nginx + node + redis
+## nginx: 
+- nginx + tomcat
+- nginx + node + redis
 
-## Lab1: 
-nginx + tomcat
 
 
 

@@ -29,24 +29,37 @@ This project is a simple .NET web application that displays the current local da
 
 ### Running the Application
 
-1. **Standalone**: 
+1. **Standalone**:
    - Navigate to the `src` directory.
    - Run the application using the command:
      ```
      dotnet run
      ```
-   - Open your web browser and navigate to `http://localhost:5000` to see the current date and time.
+   - Open your web browser and navigate to `http://localhost:5000` (or the port shown in the console) to see the current date and time.
 
-2. **Docker**:
+2. **Docker/Podman**:
    - Build the Docker image using the command:
      ```
      docker build -t dotnet-date-time-app .
      ```
-   - Run the Docker container using the command:
+     Or with Podman:
      ```
-     docker run -d -p 5000:80 dotnet-date-time-app
+     podman build -t dotnet-date-time-app .
      ```
-   - Open your web browser and navigate to `http://localhost:5000` to see the current date and time.
+   - Run the container using the command (map your desired host port, e.g. 5001, to container port 8080):
+     ```
+     docker run -d -p 5001:8080 dotnet-date-time-app
+     ```
+     Or with Podman and a specific container name:
+     ```
+     podman run -d --name date-time-app -p 5001:8080 dotnet-date-time-app
+     ```
+   - Open your web browser and navigate to `http://localhost:5001` to see the current date and time.
+
+> **Note:**
+> By default, .NET 8+ containers listen on port 8080. Adjust the `-p` flag as needed.
+> You can use [Podman](https://podman.io/) as a drop-in replacement for Docker.
+> All `docker` commands above work the same way with `podman` (e.g., `podman build ...`, `podman run ...`).
 
 ## License
 

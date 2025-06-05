@@ -1,9 +1,5 @@
-# Set nginx base image
-FROM nginx
+FROM nginx:alpine
 
-# File Author / Maintainer
-MAINTAINER Anand Mani Sankar
+RUN apk update && apk upgrade
 
-# Copy custom configuration file from the current directory
 COPY nginx.conf /etc/nginx/nginx.conf
-

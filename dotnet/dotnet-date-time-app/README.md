@@ -56,6 +56,37 @@ This project is a simple .NET web application that displays the current local da
      ```
    - Open your web browser and navigate to `http://localhost:5001` to see the current date and time.
 
+### Pushing the Image to GitHub Container Registry (GHCR)
+
+You can use the provided `gchr-push.sh` script to build and push your image to GHCR easily.
+
+1. **Set your GitHub Personal Access Token** (with `write:packages` scope) in your environment:
+   ```
+   export GITHUB_TOKEN=your_token_here
+   ```
+
+2. **Run the script** (Podman is the default; you can also specify `docker` as the first argument):
+   ```
+   ./gchr-push.sh
+   ```
+   Or, to use Docker:
+   ```
+   ./gchr-push.sh docker
+   ```
+   To specify a custom image tag (e.g., `v1.0.0`):
+   ```
+   ./gchr-push.sh podman v1.0.0
+   ```
+
+The script will:
+- Build the image
+- Authenticate to GHCR
+- Push the image with your chosen tag
+
+> **Note:**
+> Replace `your_token_here` with your actual GitHub Personal Access Token.
+> The script uses your GitHub username as configured inside the script.
+
 > **Note:**
 > By default, .NET 8+ containers listen on port 8080. Adjust the `-p` flag as needed.
 > You can use [Podman](https://podman.io/) as a drop-in replacement for Docker.

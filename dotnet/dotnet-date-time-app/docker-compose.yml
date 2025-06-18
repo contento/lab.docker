@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  dotnet-date-time-app:
+    image: contento/dotnet-date-time-app:latest
+    build: .
+    ports:
+      - "8067:8067"
+    environment:
+      - ASPNETCORE_URLS=http://*:8067

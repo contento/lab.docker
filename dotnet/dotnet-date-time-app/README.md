@@ -56,6 +56,52 @@ This project is a simple .NET web application that displays the current local da
      ```
    - Open your web browser and navigate to `http://localhost:5001` to see the current date and time.
 
+---
+
+## Docker Hub Workflow
+
+### 1. Build the Docker Image
+
+Replace `yourdockerhubusername` with your Docker Hub username:
+
+```sh
+docker build -t yourdockerhubusername/dotnet-date-time-app:latest .
+```
+
+### 2. Publish (Push) the Image to Docker Hub
+
+First, log in to Docker Hub if you haven't already:
+
+```sh
+docker login
+```
+
+Then push the image:
+
+```sh
+docker push yourdockerhubusername/dotnet-date-time-app:latest
+```
+
+### 3. Pull the Image from Docker Hub
+
+On any machine with Docker installed, pull the image:
+
+```sh
+docker pull yourdockerhubusername/dotnet-date-time-app:latest
+```
+
+### 4. Run the Image
+
+Run the container, mapping your desired host port (e.g., 8067) to the container port (e.g., 80):
+
+```sh
+docker run -d -p 8067:80 --name dotnet-date-time-app yourdockerhubusername/dotnet-date-time-app:latest
+```
+
+Now, open your browser and go to [http://localhost:8067](http://localhost:8067).
+
+---
+
 ### Pushing the Image to GitHub Container Registry (GHCR)
 
 You can use the provided `gchr-push.sh` script to build and push your image to GHCR easily.

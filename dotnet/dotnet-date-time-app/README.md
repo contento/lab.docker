@@ -102,32 +102,33 @@ Now, open your browser and go to [http://localhost:8067](http://localhost:8067).
 
 ---
 
-### Pushing the Image to GitHub Container Registry (GHCR)
+## GitHub Container Registry (GHCR) Workflow
 
-You can use the provided `gchr-push.sh` script to build and push your image to GHCR easily.
+### 1. Pull the Image from GHCR
 
-1. **Set your GitHub Personal Access Token** (with `write:packages` scope) in your environment:
-   ```
-   export GITHUB_TOKEN=your_token_here
-   ```
+Replace `YOUR_GITHUB_USERNAME` with your actual GitHub username:
 
-2. **Run the script** (Podman is the default; you can also specify `docker` as the first argument):
-   ```
-   ./gchr-push.sh
-   ```
-   Or, to use Docker:
-   ```
-   ./gchr-push.sh docker
-   ```
-   To specify a custom image tag (e.g., `v1.0.0`):
-   ```
-   ./gchr-push.sh podman v1.0.0
-   ```
+```sh
+docker pull ghcr.io/YOUR_GITHUB_USERNAME/dotnet-date-time-app:latest
+```
 
-The script will:
-- Build the image
-- Authenticate to GHCR
-- Push the image with your chosen tag
+If the image is private, authenticate first:
+
+```sh
+echo $GITHUB_TOKEN | docker login ghcr.io -u YOUR_GITHUB_USERNAME --password-stdin
+```
+
+### 2. Run the Image from GHCR
+
+Run the container, mapping your desired host port (e.g., 8067) to the container port (e.g., 80):
+
+```sh
+docker run -d -p 8067:80 --name dotnet-date-time-app ghcr.io/YOUR_GITHUB_USERNAME/dotnet-date-time-app:latest
+```
+
+Now, open your browser and go to [http://localhost:8067](http://localhost:8067).
+
+---
 
 > **Note:**
 > Replace `your_token_here` with your actual GitHub Personal Access Token.
